@@ -1,6 +1,6 @@
 # 🧮 Advanced Calculator
 
-A **high-precision numerical calculator** written in C++ (with optional Python version) that supports **large numbers and decimal operations**.  
+A **numerical calculator** written in C++  that supports **large numbers and decimal operations**.  
 Perfect for performing addition, subtraction, multiplication, and division with long decimal numbers.
 
 ---
@@ -24,5 +24,4 @@ Perfect for performing addition, subtraction, multiplication, and division with 
 ---
 
 
-git clone https://github.com/YourUsername/YourProject.git
-cd YourProject
+
