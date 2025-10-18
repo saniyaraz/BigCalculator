@@ -322,49 +322,98 @@ if(n1<n2)
 for(i=n1+n2;i>=0;i--)
     cout << arr3[i] ;
 }
-/*void mytaghsim (int a[], int b[])
+void mytaghsim(int a[], int b[])
 {
-int n1 = adad1.size(), n2 = adad2.size(),j,n3;
-if(n1>n2)
-{
- for(j=0;j<n1+n2;j++)
+    int n1 = adad1.size(), n2 = adad2.size();
+    int temp[200] = {0};
+    int result[200] = {0};
+    int rem[200] = {0};
+    int lenRem = 0;
+
+    for (int i = n1 - 1; i >= 0; i--)
     {
-        mytaghsimzarb(arr1,arr2);
-        myemtehan(adadakhar);
-        n3 = adadakhar.size
+        for (int j = lenRem; j > 0; j--)
+            rem[j] = rem[j - 1];
+        rem[0] = arr1[i];
+        lenRem++;
 
+      
+        while (lenRem > 1 && rem[lenRem - 1] == 0)
+            lenRem--;
 
-    }
-}
-
-}
-void mytaghsimzarb (int a[], int b[])
-{
-int n1 = adad1.size();
-   for(i=0;i<n2;i++)
-      for(j=0;j<n1;j++)
-         {
-         arr3[i+j]+=(arr1[j]*arr2[i]);
-         if(arr3[j+i]>9)
+     
+        int q = 0;
+        while (true)
+        {
+           
+            int carry = 0;
+            for (int j = 0; j < n2; j++)
             {
-             m = arr3[j+i]/10;
-             arr3[j+i]%=10;
-             arr3[j+i+1] += m;
+                temp[j] = arr2[j] * (q + 1) + carry;
+                carry = temp[j] / 10;
+                temp[j] %= 10;
             }
-         }
-for(i=n1+n2;i>=0;i--)
-{
-    arr1[i] = arr3[i] ;
-    adadakhar += arr1[i] + 48;
+            temp[n2] = carry;
+
+            
+            bool bigger = false;
+            if (lenRem > n2 + (carry > 0))
+                bigger = true;
+            else if (lenRem < n2 + (carry > 0))
+                bigger = false;
+            else
+            {
+                for (int j = lenRem - 1; j >= 0; j--)
+                {
+                    int tt = (j < n2 + (carry > 0)) ? temp[j] : 0;
+                    if (rem[j] > tt) { bigger = true; break; }
+                    if (rem[j] < tt) { bigger = false; break; }
+                }
+            }
+
+            if (bigger)
+                q++;
+            else
+                break;
+        }
+
+  
+        if (q > 0)
+        {
+            int borrow = 0;
+            for (int j = 0; j < n2; j++)
+            {
+                int val = rem[j] - arr2[j] * q - borrow;
+                if (val < 0)
+                {
+                    val += 10;
+                    borrow = 1;
+                }
+                else
+                    borrow = 0;
+                rem[j] = val;
+            }
+            while (lenRem > 1 && rem[lenRem - 1] == 0)
+                lenRem--;
+        }
+
+        result[i] = q;
+    }
+
+    cout << "Natije taqsim: ";
+    bool leadingZero = true;
+    for (int i = n1 - 1; i >= 0; i--)
+    {
+        if (result[i] != 0)
+            leadingZero = false;
+        if (!leadingZero)
+            cout << result[i];
+    }
+    if (leadingZero)
+        cout << 0;
+
+    cout << endl << "Baghimande: ";
+    for (int i = lenRem - 1; i >= 0; i--)
+        cout << rem[i];
+    cout << endl;
 }
-}
-void myemtehan (string a)
-{
-while(1)
-{
-if(*a.begin()!=48)
-   break;
-if(*a.begin()==48)
-   a.erase(0,1);
-}
-}*/
